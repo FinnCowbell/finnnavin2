@@ -1,0 +1,119 @@
+#my-name{
+  font-family: 
+}
+.logo-div{
+	display:inline;
+}
+@mixin logo-animation($name,$duration,$delay){
+  $initial-delay: .25s;
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-delay: $initial-delay + $delay;
+}
+
+.logo-div#finn{/*Animations are for the "Thomas" easter egg **Unimplemented*/
+  left: 0;
+  animation-play-state: paused;
+  @include logo-animation(DotAnim, .5s, .25s);
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+.logo-div#dot {
+  size: 0em;
+  @include logo-animation(DotAnim, .5s, .25s);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+.logo-div#space{
+	display: inline;
+  opacity: 0;
+  @include logo-animation(ShrinkSpace, .4s, 1s);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  animation-direction: reverse;
+}
+
+#dot-shrink{ /*Class dedicated to shrinking the dot*/
+  display:inline-block; /*Inline doesn't work*/
+  font-size:1em;
+  @include logo-animation(ShrinkSpace, .4s, 1s);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+/* Logo Animations*/
+/*Moves all text down at the end of the animation*/
+@keyframes panDown{ 
+  0%{
+		margin-top: -.25em;
+	}
+  100%{
+		padding-top: 0em;
+  }
+}
+
+@keyframes colorShift{ /* makes the color shift in a fancy way.*/
+  0%{
+    color: var(--menu-font-color);
+  }
+  100%{
+    color: var(--accent-color);
+  }
+}
+
+@keyframes ShrinkSpace{ /*Makes an item dissapear (or reappear if reversed)*/
+  from {
+    font-size: 1em;
+  }
+  to {
+    font-size: 0.0em;
+  }
+}
+
+@keyframes CollapeBlog{
+	0%{
+		padding-bottom:10px;
+	}
+	100%{
+		padding-bottom: 100%;
+	}
+}
+
+@keyframes DotAnim{/*Fancy Fade-away Dot*/
+  0%{
+    position:relative;
+    bottom:0;
+    opacity: 1;
+
+  }
+  1%{
+    position:relative;
+    bottom:0;
+  }
+  100%{
+    bottom: 0px;
+    opacity:0;
+    position: relative;
+  }
+}
+
+@keyframes fadeUp { /*Currently Unused*/
+  0%{
+		opacity:0;
+		display:block;
+    padding-top:1.25em;
+  }
+  99%{
+    position:relative;
+    padding-top: 0px;
+    opacity: 1;
+  }
+  100%{
+		position: relative;
+		display:inline-block;
+    opacity:1;
+    padding-top:0px;
+  }
+}

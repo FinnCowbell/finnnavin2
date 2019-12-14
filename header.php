@@ -16,7 +16,8 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-
+	<link href="https://fonts.googleapis.com/css?
+	family=Cabin|Ubuntu:300,400,500|Roboto+Mono|Roboto+Slab&display=swap" rel="stylesheet">
 	<?php wp_head(); ?>
 </head>
 
@@ -24,26 +25,26 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'finnnavin2' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
+	<header id="main-header" class="site-header">
+		<div class="my-name">
 			<?php
-			the_custom_logo();
+			// the_custom_logo();
 			if ( is_front_page() && is_home() ) :
 				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+        <div class="logo-div" a=id="finn">Finn</div><!--
+      	--><div class="logo-div" id="space" style="color:white;"> </div><!--
+				--><div class="logo-div" id="nav">Nav</div><!--
+  			--><div class="logo-div" id="dot"><!--
+  			--><div class="logo-div" id="dot-shrink">.</div></div><!--	
+      	--><div class="logo-div" id="in">in</div></a></h1>
 				<?php
 			else :
 				?>
 				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
 				<?php
-			endif;
-			$finnnavin2_description = get_bloginfo( 'description', 'display' );
-			if ( $finnnavin2_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $finnnavin2_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
+			endif;?>
+    </div><!-- .his-name -->
+    
 		<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'finnnavin2' ); ?></button>
 			<?php
@@ -53,6 +54,5 @@
 			) );
 			?>
 		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
+  </header>
 	<div id="content" class="site-content">
