@@ -1,8 +1,13 @@
 .main-navigation {
-	clear: both;
-	display: block;
-	float: left;
-	width: 100%;
+  clear: both;
+  display: block;
+  width: 100%;
+  #ul{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+  }
 
 	ul {
 		display: none;

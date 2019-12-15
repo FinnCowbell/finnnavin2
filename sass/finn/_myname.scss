@@ -1,0 +1,99 @@
+@use "constants";
+
+@mixin name-animation($name,$duration,$delay){
+  $initial-delay: .25s;
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-delay: $initial-delay + $delay;
+  animation-fill-mode: both;
+}
+
+@mixin color-shift($name,$from,$to){
+  @keyframes #{$name}{ /* makes the color shift in a fancy way.*/
+    0%{
+      color: $from;
+    }
+    100%{
+      color: $to;
+    }
+  }
+}
+
+.my-name{
+  font-family: constants.$heading-stack; 
+  font-size: min(8vw,72px);
+  margin-left: 25px;
+  margin-right: 25px;
+  overflow-x: hidden;
+  grid-area: myname;
+  justify-self: center;
+  align-self: center;
+  display: inline;
+  position:relative;
+  color: black;
+  @include name-animation(Opening-color-shift,1s,1s);
+  @include constants.a-no-decoration;
+  div{
+    display: inline;
+  }
+  #finn{
+    left: 0;
+  }
+  #space{
+    display: inline;
+    @include name-animation(Shrink-space, .5s, .5s);
+    animation-timing-function: ease-in-out;
+    animation-direction: reverse;
+  }
+  #dot {
+    #shrink-dot{
+      display: inline;
+      @include name-animation(Shrink-space, .5s, .5s);
+      animation-timing-function: ease-in-out;
+      font-size:1em;
+    }
+    @include name-animation(Fade-dot, .25s, .25s);
+    animation-timing-function: linear;
+  }
+
+}
+@media screen and (min-width:constants.$mobile-breakpoint){
+  .my-name{
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+/* name Animations*/
+@include color-shift(Opening-color-shift,constants.$header-color,constants.$header-accent);
+@include color-shift(Topbar-color-shift,constants.$accent-color,constants.$topbar-name);
+
+@keyframes Shrink-space{ /*Makes an item dissapear (or reappear if reversed)*/
+  from {
+    font-size: 1em;
+  }
+  to {
+    font-size: 0.0em;
+  }
+}
+
+@keyframes Fade-dot{/*Fancy Fade-away Dot*/
+  0%{
+    position:relative;
+    bottom:0;
+    opacity: 1;
+  }
+  100%{
+    bottom: 0px;
+    opacity:0.1;
+    position: relative;
+  }
+}
+
+@keyframes panDown{ 
+  0%{
+		margin-top: -.25em;
+	}
+  100%{
+		padding-top: 0em;
+  }
+}

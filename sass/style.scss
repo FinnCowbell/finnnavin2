@@ -40,7 +40,11 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Infinite scroll
 # Media
 	## Captions
-	## Galleries
+  ## Galleries
+* Finnstuff
+  * Billboard
+  * Logo
+  * MyNav
 --------------------------------------------------------------*/
 @import "variables-site/variables-site";
 @import "mixins/mixins-master";
@@ -106,6 +110,16 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "media/media";
 
 /* *** 
- * Logo Animations 
+ * Front Billboard
  *** */
-@import "finn/logo";
+@import "finn/billboard";
+
+/* *** 
+ * MyName 
+ *** */
+@import "finn/myname";
+
+/* *** 
+ * Nav Buttons 
+ *** */
+ @import "finn/nav";
