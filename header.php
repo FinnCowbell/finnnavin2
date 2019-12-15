@@ -19,6 +19,12 @@
 	<link href="https://fonts.googleapis.com/css?
 	family=Cabin|Ubuntu:300,400,500|Roboto+Mono|Roboto+Slab&display=swap" rel="stylesheet">
   <?php 
+	function include_custom_jquery(){
+		wp_deregister_script('jquery');
+		wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery-3.4.1.min.js', array(), '3.4.1', true);
+		wp_enqueue_script( 'scrollTo', get_template_directory_uri() . '/js/jquery.scrollTo.min.js', array('jquery'), null, true);
+		wp_enqueue_script( 'banner', get_template_directory_uri() . '/js/banner.js', array(), null, true);
+	}
 	add_action('wp_enqueue_scripts', 'include_custom_jquery'); 
 	?>
 	<?php wp_head(); ?>
@@ -28,11 +34,11 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'finnnavin2' ); ?></a>
     <?php
-    if ( is_front_page() && is_home() ) :
+    if ( is_front_page() || is_home() ) :
     ?>
 	<header id="billboard">
     <div id="backdrop">
-      <video id="backdrop-video" width="auto" height="100%" autoplay>
+      <video id="backdrop-video" width="auto" height="100%">
         <source src="../../wp-content/uploads/ss.mp4"></source>
       </video>
     </div>
@@ -51,13 +57,24 @@
 			) );
 			?>
     </nav>
+    <button id="remote">
+      <?php 
+        include('media/pause.svg');
+        include('media/play.svg');
+      ?>
+    </button>
   </header>
+  <div class="billboard-padding"></div>
 	<?php
 	endif;?>
   <header id="menu-banner">
-  <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Finn Navin</a></h1> 
+    <h2 class="site-title">
+      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+      Finn Navin
+      </a>
+    </h2> 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'finnnavin2' ); ?></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( '≡', 'finnnavin2' ); ?></button>
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'menu-1',
@@ -67,3 +84,8 @@
 		</nav><!-- #site-navigation -->
   </header>
 	<div id="content" class="site-content">
+  <?php
+    if ( is_front_page() || is_home() ) :
+
+      
+  endif; ?>

@@ -5,7 +5,17 @@
  * navigation support for dropdown menus.
  */
 ( function() {
-	var container, button, menu, links, i, len;
+  var banner, container, button, menu, links, i, len;
+
+  banner = document.getElementById( 'menu-banner' );
+  banner.classList.add('hidden')
+  document.addEventListener('scroll', function(e){
+    if(window.scrollY >= window.innerHeight){
+      banner.classList.remove('hidden')
+    }else{
+      banner.classList.add('hidden')
+    }
+  })
 
 	container = document.getElementById( 'site-navigation' );
 	if ( ! container ) {
@@ -102,5 +112,5 @@
 				parentLink[i].addEventListener( 'touchstart', touchStartFn, false );
 			}
 		}
-	}( container ) );
+  }( container ) );
 } )();
