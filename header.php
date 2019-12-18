@@ -67,7 +67,7 @@
   <div class="billboard-padding"></div>
 	<?php
 	endif;?>
-  <header id="menu-banner">
+  <header id="menu-banner" class="hidden">
     <h2 class="site-title">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
       Finn Navin
@@ -86,6 +86,5 @@
 	<div id="content" class="site-content">
   <?php
     if ( is_front_page() || is_home() ) :
-
-      
+      include('front-page/index.php');
   endif; ?>

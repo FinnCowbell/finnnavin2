@@ -1,19 +1,28 @@
 /**
  * File navigation.js.
  *
- * Handles toggling the navigation menu for small screens and enables TAB key
+ * Handles displaying the navigation menu,  enables the TAB key,
  * navigation support for dropdown menus.
  */
-( function() {
-  var banner, container, button, menu, links, i, len;
 
+( function() {
+  var billboard, banner, container, button, menu, links, i, len;
+
+  billboard = document.getElementById( 'billboard' );
   banner = document.getElementById( 'menu-banner' );
-  banner.classList.add('hidden')
+  if(!billboard || window.scrollY >= window.innerHeight){
+    /*If there's no JS, we want to keep the banner hidden, because it will basically completely be controlled by JS*/
+    banner.classList.remove('hidden') 
+  }
   document.addEventListener('scroll', function(e){
-    if(window.scrollY >= window.innerHeight){
-      banner.classList.remove('hidden')
-    }else{
-      banner.classList.add('hidden')
+    /*Scroll Rule
+    Show banner below screen height if the billboard exists: Done.*/
+    if(billboard){
+      if (window.scrollY >= window.innerHeight) {
+        banner.classList.remove('hidden')
+      } else{
+        banner.classList.add('hidden')
+      }
     }
   })
 

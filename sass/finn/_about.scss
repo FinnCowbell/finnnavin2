@@ -1,0 +1,63 @@
+@use 'constants';
+@use '../functions/trig';
+.about-header-container{
+  width: 100%;
+  padding:20px;
+}
+h2.section-header{
+  margin: 0;
+  font-family: constants.$header-stack;
+  color: constants.$about-accent;
+  font-size: min(128px,15vw);
+  opacity: .5;
+}
+
+.about-grid{
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+  'content hex1'
+  'content hex2'
+  'content hex3';
+  .content{
+    grid-area: content;
+  }
+  @for $i from 1 to 4{
+    #hex-svg-#{$i}{
+      image{
+        height:100px;
+        width:auto;
+      }
+      #hexagon-clip-path-#{$i}{
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      display: block;
+      margin: auto;
+      grid-area: hex#{$i};
+      justify-self: center;
+      align-self: center;
+    }
+  }
+}
+
+@media screen and (max-width: constants.$tablet-breakpoint){
+  .about-grid{
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+}
+
+@media screen and (min-width: constants.$mobile-breakpoint){
+  .about-grid{
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+    '. content hex1'
+    'hex2 content .'
+    '. content hex3';
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+}
