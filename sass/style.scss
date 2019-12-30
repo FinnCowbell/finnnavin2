@@ -129,6 +129,17 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
  @import "finn/decal";
 
  /* *** 
+ * Headers
+ *** */
+@import "finn/headers";
+
+ /* *** 
  * About
  *** */
  @import "finn/about";
+
+  /* *** 
+ * Projects
+ *** */
+ @import "finn/projects";
+ @import "finn/project-cards";

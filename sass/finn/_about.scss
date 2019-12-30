@@ -1,43 +1,39 @@
 @use 'constants';
 @use '../functions/trig';
-.about-header-container{
-  width: 100%;
-  padding:20px;
-}
-h2.section-header{
-  margin: 0;
-  font-family: constants.$header-stack;
-  color: constants.$about-accent;
-  font-size: min(128px,15vw);
-  opacity: .5;
-}
 
 .about-grid{
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-areas: 
   'content hex1'
   'content hex2'
   'content hex3';
-  .content{
+  .about-content{
     grid-area: content;
+    padding: 20px;
+  }
+  .about-hex{
+    image{
+      height:100px;
+      width: auto;
+    }
+    .hexagon-path{
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .hexagon-clip{
+      transform: translate(6.5px,0px);
+    }
+    display: block;
+    margin: auto;
+    justify-self: center;
+    align-self: center;
+    transition: .1s;
   }
   @for $i from 1 to 4{
     #hex-svg-#{$i}{
-      image{
-        height:100px;
-        width:auto;
-      }
-      #hexagon-clip-path-#{$i}{
-        transform-box: fill-box;
-        transform-origin: center;
-      }
-      display: block;
-      margin: auto;
       grid-area: hex#{$i};
-      justify-self: center;
-      align-self: center;
     }
   }
 }
@@ -46,13 +42,17 @@ h2.section-header{
   .about-grid{
     margin-left: 25px;
     margin-right: 25px;
+    grid-template-areas: 
+    'content hex1'
+    'content hex2'
+    'content hex3';
   }
 }
 
-@media screen and (min-width: constants.$mobile-breakpoint){
+@media screen and (min-width: constants.$tablet-breakpoint){
   .about-grid{
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     grid-template-areas:
     '. content hex1'
     'hex2 content .'

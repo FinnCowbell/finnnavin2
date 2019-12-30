@@ -1,5 +1,6 @@
 @use 'constants';
 @use '../functions/trig';
+
 .transition-triangle{
   padding-bottom: 10px;
   @for $i from 1 through 6{
@@ -15,4 +16,22 @@
 
     }
   }
+}
+#into-projects{
+  transform: rotate(180deg);
+  .line{
+    background-color: constants.$showcase-background;
+    margin-top: 0px;
+    margin-bottom: 3px;
+
+  }
+}
+#project-decal-curtain{
+  position: absolute;
+  transform: rotate(180deg);
+  bottom: 0; //we are upside down
+  width: 100%;
+  height: 60px;
+  background-color: $color__background-body;
+  z-index: 1;
 }

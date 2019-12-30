@@ -1,0 +1,53 @@
+@use "constants";
+
+#project-showcase{
+  #travelling-background{
+    z-index: 1;
+    top: 0;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+  .showcase-background{
+    background-color: constants.$showcase-background;
+    height: inherit;
+    width: inherit;
+    top: 0;
+    z-index: 1;
+  }
+
+}
+#showcase-cards{
+  flex-grow: 1;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 10px repeat(3, calc(100% - 40px)) 10px;
+  grid-template-rows: minmax(auto, 1fr);
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  padding-bottom: 15px;
+  .project-card{
+    scroll-snap-align: center;
+  }
+  &::before, &::after{
+    content: '';
+  }
+}
+#projects-window{
+  position:relative;
+  width: 100vw;
+  height: 120vh;
+  #projects-content{
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    top: 0;
+    z-index: 2;
+  }
+}
+#bottom-anchor{
+  position:sticky;
+  top:0;
+  width: 100vw;
+}

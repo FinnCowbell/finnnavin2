@@ -20,10 +20,8 @@
 	family=Cabin|Ubuntu:300,400,500|Roboto+Mono|Roboto+Slab&display=swap" rel="stylesheet">
   <?php 
 	function include_custom_jquery(){
-		wp_deregister_script('jquery');
-		wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery-3.4.1.min.js', array(), '3.4.1', true);
-		wp_enqueue_script( 'scrollTo', get_template_directory_uri() . '/js/jquery.scrollTo.min.js', array('jquery'), null, true);
-		wp_enqueue_script( 'banner', get_template_directory_uri() . '/js/banner.js', array(), null, true);
+    wp_enqueue_script( 'smoothScroll', get_template_directory_uri() . '/js/smooth-scroll.polyfills.min.js', array(), null, true);
+    wp_enqueue_script( 'banner', get_template_directory_uri() . '/js/banner.js', array('smoothScroll'), null, true);
 	}
 	add_action('wp_enqueue_scripts', 'include_custom_jquery'); 
 	?>
@@ -37,7 +35,7 @@
     if ( is_front_page() || is_home() ) :
     ?>
 	<header id="billboard">
-    <div id="backdrop">
+    <div class="backdrop">
       <video id="backdrop-video" width="auto" height="100%">
         <source src="../../wp-content/uploads/ss.mp4"></source>
       </video>
@@ -49,20 +47,22 @@
         </a>
       </h1>
     </div><!-- .his-name -->
-    <nav id="billboard-nav">
-      <?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-    </nav>
-    <button id="remote">
-      <?php 
-        include('media/pause.svg');
-        include('media/play.svg');
-      ?>
-    </button>
+    <div class="controls">
+      <nav id="billboard-nav">
+        <?php
+        wp_nav_menu( array(
+          'theme_location' => 'menu-1',
+          'menu_id'        => 'primary-menu',
+        ) );
+        ?>
+      </nav>
+      <button id="remote">
+        <?php 
+          include('media/pause.svg');
+          include('media/play.svg');
+        ?>
+      </button>
+    </div>
   </header>
   <div class="billboard-padding"></div>
 	<?php
@@ -74,7 +74,7 @@
       </a>
     </h2> 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( '≡', 'finnnavin2' ); ?></button>
+			<button class="menu-toggle" style="display:none;"aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( '≡', 'finnnavin2' ); ?></button>
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'menu-1',

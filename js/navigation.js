@@ -7,7 +7,6 @@
 
 ( function() {
   var billboard, banner, container, button, menu, links, i, len;
-
   billboard = document.getElementById( 'billboard' );
   banner = document.getElementById( 'menu-banner' );
   if(!billboard || window.scrollY >= window.innerHeight){

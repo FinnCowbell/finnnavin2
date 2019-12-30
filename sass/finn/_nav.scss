@@ -1,8 +1,7 @@
 @use "constants";
 
 #billboard-nav{
-  width: 100%;
-  margin-left: 25px;
+  margin-left: 40px;
   grid-area: navigation;
   align-self: center;
   font-family: constants.$main-font-stack;
@@ -24,26 +23,26 @@
 }
 
 #menu-banner{
-  $banner-height: 55px;
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "name menu";
   align-items: center;
   width: 100%;
   position: fixed;
-  padding: 0px 50px 0px 50px;
+  padding: 0px 20px 0px 20px;
   top: 0;
   z-index: 999;
   transition: .25s;
   transition-timing-function: cubic-bezier(0.3, 0, 0, 1);
-  height: $banner-height;
+  height: constants.$banner-height;
   color: constants.$header-color;
   background-color: constants.$banner-color;
   box-shadow: 5px 0px 10px black;
   &.hidden{
-    top: -$banner-height - 5px;
+    top: -1 * constants.$banner-height - 10px;
   }
   h2{
+    transition: .25s;
     color: constants.$header-accent;
     grid-area: name;
     margin: 0px;
@@ -64,10 +63,12 @@
   @include constants.a-no-decoration;
 }
 
-@media screen and (min-width: constants.$mobile-breakpoint){
+@media screen and (min-width: constants.$tablet-breakpoint){ //Desktop
+  #menu-banner{
+    padding: 0px 50px 0px 50px;
+  }
   #billboard-nav{
-    width: 100%;
-    font-size: 42px;
+    font-size: 50px;
     margin-left: 0px;
     #primary-menu{
       align-items: center;
@@ -75,4 +76,3 @@
     }
   }
 }
-

@@ -463,7 +463,7 @@ html {
 }
 
 body {
-  background: #fff;
+  background: #ebebeb;
   /* Fallback for when there is no custom background color defined. */
 }
 
@@ -955,23 +955,23 @@ object {
 /* *** 
  * Front Billboard
  *** */
-/* ***
-Variables:
-*** */
-/* ***
-Mixins:
-*** */
 #billboard {
   text-shadow: black 1px 1px 10px;
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr 2fr 1fr;
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-areas: ". . ." ". myname ." ". . ." ". navigation ." "remote . .";
+  grid-template-rows: 4fr 3fr;
+  grid-template-areas: "myname" "controls";
   border: 20px solid #1c4f89;
   border-top: 30px solid #1c4f89;
+  box-shadow: inset 0 0 10px black;
   background-color: transparent;
   width: 100vw;
   height: 100vh;
+}
+#billboard .controls {
+  display: grid;
+  grid-area: controls;
+  grid-template-columns: 1fr;
+  grid-template-areas: "navigation" "remote";
 }
 #billboard #remote {
   grid-area: remote;
@@ -983,7 +983,7 @@ Mixins:
   outline: none;
   width: 30px;
   padding: 0px;
-  margin: 0px 0px 25px 25px;
+  margin: 0px 0px 25px 40px;
 }
 #billboard #remote svg {
   width: inherit;
@@ -1004,12 +1004,12 @@ Mixins:
 #billboard #remote.playing #pause {
   display: block !important;
 }
-#billboard #backdrop {
+#billboard .backdrop {
   width: 100%;
   height: 100%;
   z-index: -1;
   background-color: #1a1a1a;
-  grid-area: 1/1/6/5;
+  grid-area: 1/1/3/2;
   overflow: hidden;
 }
 #billboard video {
@@ -1019,7 +1019,7 @@ Mixins:
 }
 @media (min-aspect-ratio: 16/9) {
   #billboard video {
-    height: 100%;
+    width: 100%;
     top: -50%;
   }
 }
@@ -1039,25 +1039,18 @@ Mixins:
   border-bottom-right-radius: 4px;
 }
 
-@media screen and (max-width: 1050px) {
-  #billboard {
-    grid-template-areas: ". . ." ". myname ." ". . ." ". navigation ." ". remote .";
+@media screen and (min-width: 1050px) {
+  #billboard .controls {
+    grid-template-columns: 1fr 750px 1fr;
+    grid-template-areas: ". navigation ." "remote . .";
   }
 }
 /* *** 
  * MyName 
  *** */
-/* ***
-Variables:
-*** */
-/* ***
-Mixins:
-*** */
 .my-name {
-  font-family: Ubuntu, sans-serif;
-  font-size: min(8vw, 72px);
-  margin-left: 25px;
-  margin-right: 25px;
+  font-family: "Cabin", Ubuntu, sans-serif;
+  font-size: 72px;
   overflow-x: hidden;
   grid-area: myname;
   justify-self: center;
@@ -1075,6 +1068,9 @@ Mixins:
   color: inherit;
 }
 .my-name a:hover {
+  color: inherit;
+}
+.my-name a:visited {
   color: inherit;
 }
 .my-name div {
@@ -1109,10 +1105,9 @@ Mixins:
   font-size: 1em;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (max-width: 1050px) {
   .my-name {
-    margin-left: 50px;
-    margin-right: 50px;
+    font-size: 8vw;
   }
 }
 /* name Animations*/
@@ -1167,15 +1162,8 @@ Mixins:
 /* *** 
  * Nav Buttons 
  *** */
-/* ***
-Variables:
-*** */
-/* ***
-Mixins:
-*** */
 #billboard-nav {
-  width: 100%;
-  margin-left: 25px;
+  margin-left: 40px;
   grid-area: navigation;
   align-self: center;
   font-family: Roboto Slab, serif;
@@ -1187,6 +1175,9 @@ Mixins:
   color: inherit;
 }
 #billboard-nav a:hover {
+  color: inherit;
+}
+#billboard-nav a:visited {
   color: inherit;
 }
 #billboard-nav #primary-menu {
@@ -1209,7 +1200,7 @@ Mixins:
   align-items: center;
   width: 100%;
   position: fixed;
-  padding: 0px 50px 0px 50px;
+  padding: 0px 20px 0px 20px;
   top: 0;
   z-index: 999;
   transition: 0.25s;
@@ -1220,13 +1211,14 @@ Mixins:
   box-shadow: 5px 0px 10px black;
 }
 #menu-banner.hidden {
-  top: -60px;
+  top: -65px;
 }
 #menu-banner h2 {
+  transition: 0.25s;
   color: #2c7fdd;
   grid-area: name;
   margin: 0px;
-  font-family: Ubuntu, sans-serif;
+  font-family: "Cabin", Ubuntu, sans-serif;
 }
 #menu-banner #site-navigation {
   font-family: Roboto Slab, serif;
@@ -1247,11 +1239,17 @@ Mixins:
 #menu-banner a:hover {
   color: inherit;
 }
+#menu-banner a:visited {
+  color: inherit;
+}
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 1050px) {
+  #menu-banner {
+    padding: 0px 50px 0px 50px;
+  }
+
   #billboard-nav {
-    width: 100%;
-    font-size: 42px;
+    font-size: 50px;
     margin-left: 0px;
   }
   #billboard-nav #primary-menu {
@@ -1261,12 +1259,6 @@ Mixins:
 }
 /* *** 
 * Decorations
-*** */
-/* ***
-Variables:
-*** */
-/* ***
-Mixins:
 *** */
 .transition-triangle {
   padding-bottom: 10px;
@@ -1332,103 +1324,231 @@ Mixins:
   border-bottom-right-radius: 16px;
 }
 
-/* *** 
-* About
-*** */
-/* ***
-Variables:
-*** */
-/* ***
-Mixins:
-*** */
-.about-header-container {
+#into-projects {
+  transform: rotate(180deg);
+}
+#into-projects .line {
+  background-color: #1b1b1b;
+  margin-top: 0px;
+  margin-bottom: 3px;
+}
+
+#project-decal-curtain {
+  position: absolute;
+  transform: rotate(180deg);
+  bottom: 0;
   width: 100%;
-  padding: 20px;
+  height: 60px;
+  background-color: #ebebeb;
+  z-index: 1;
+}
+
+/* *** 
+* Headers
+*** */
+.header-container {
+  width: 100%;
 }
 
 h2.section-header {
   margin: 0;
-  font-family: Ubuntu, sans-serif;
-  color: #5f4b8b;
-  font-size: min(128px, 15vw);
+  font-family: "Cabin", Ubuntu, sans-serif;
+  font-size: 15vw;
   opacity: 0.5;
 }
+h2.section-header a {
+  text-decoration: none;
+  color: inherit;
+}
+h2.section-header a:hover {
+  color: inherit;
+}
+h2.section-header a:visited {
+  color: inherit;
+}
+h2.section-header .anchor {
+  opacity: 0.25;
+  font-family: Roboto Slab, serif;
+  margin-left: -0.5em;
+  color: #1c4f89;
+  font-size: 0.25em;
+  transition: 0.1s;
+}
+h2.section-header .anchor:hover {
+  opacity: 1;
+}
+h2.section-header .anchor:visited {
+  color: #1c4f89;
+}
 
+@media screen and (min-width: 1050px) {
+  h2.section-header {
+    font-size: 128px;
+  }
+}
+#about-text {
+  color: #5f4b8b;
+}
+
+#projects #projects-text {
+  color: #009874;
+  padding-top: 55px;
+  float: right;
+  width: 100%;
+  text-align: center;
+}
+
+#resume-text {
+  color: #9f4f4c;
+}
+
+/* *** 
+* About
+*** */
 .about-grid {
   display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-areas: "content hex1" "content hex2" "content hex3";
 }
-.about-grid .content {
+.about-grid .about-content {
   grid-area: content;
+  padding: 20px;
+}
+.about-grid .about-hex {
+  display: block;
+  margin: auto;
+  justify-self: center;
+  align-self: center;
+  transition: 0.1s;
+}
+.about-grid .about-hex image {
+  height: 100px;
+  width: auto;
+}
+.about-grid .about-hex .hexagon-path {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.about-grid .about-hex .hexagon-clip {
+  transform: translate(6.5px, 0px);
 }
 .about-grid #hex-svg-1 {
-  display: block;
-  margin: auto;
   grid-area: hex1;
-  justify-self: center;
-  align-self: center;
-}
-.about-grid #hex-svg-1 image {
-  height: 100px;
-  width: auto;
-}
-.about-grid #hex-svg-1 #hexagon-clip-path-1 {
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: rotate(15deg);
-  transition: 1s;
 }
 .about-grid #hex-svg-2 {
-  display: block;
-  margin: auto;
   grid-area: hex2;
-  justify-self: center;
-  align-self: center;
-}
-.about-grid #hex-svg-2 image {
-  height: 100px;
-  width: auto;
-}
-.about-grid #hex-svg-2 #hexagon-clip-path-2 {
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: rotate(30deg);
-  transition: 1s;
 }
 .about-grid #hex-svg-3 {
-  display: block;
-  margin: auto;
   grid-area: hex3;
-  justify-self: center;
-  align-self: center;
-}
-.about-grid #hex-svg-3 image {
-  height: 100px;
-  width: auto;
-}
-.about-grid #hex-svg-3 #hexagon-clip-path-3 {
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: rotate(45deg);
-  transition: 1s;
 }
 
 @media screen and (max-width: 1050px) {
   .about-grid {
     margin-left: 25px;
     margin-right: 25px;
+    grid-template-areas: "content hex1" "content hex2" "content hex3";
   }
 }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 1050px) {
   .about-grid {
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     grid-template-areas: ". content hex1" "hex2 content ." ". content hex3";
     margin-left: 100px;
     margin-right: 100px;
   }
+}
+/* *** 
+* Projects
+*** */
+#project-showcase #travelling-background {
+  z-index: 1;
+  top: 0;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+}
+#project-showcase .showcase-background {
+  background-color: #1b1b1b;
+  height: inherit;
+  width: inherit;
+  top: 0;
+  z-index: 1;
+}
+
+#showcase-cards {
+  flex-grow: 1;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 10px repeat(3, calc(100% - 40px)) 10px;
+  grid-template-rows: minmax(auto, 1fr);
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  padding-bottom: 15px;
+}
+#showcase-cards .project-card {
+  scroll-snap-align: center;
+}
+#showcase-cards::before, #showcase-cards::after {
+  content: "";
+}
+
+#projects-window {
+  position: relative;
+  width: 100vw;
+  height: 120vh;
+}
+#projects-window #projects-content {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  top: 0;
+  z-index: 2;
+}
+
+#bottom-anchor {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+}
+
+.project-card {
+  border-radius: 25px;
+}
+.project-card#p4gtl {
+  color: black;
+  background-color: #eeeeee;
+  border-bottom: solid 5px gray;
+}
+.project-card#p4gtl h1, .project-card#p4gtl h2, .project-card#p4gtl h3, .project-card#p4gtl h4, .project-card#p4gtl h5 {
+  color: #0069ed;
+}
+.project-card#p4gtl a span {
+  color: #ff9900;
+}
+.project-card#nextstep {
+  color: black;
+  background-color: #fffcfc;
+  border-bottom: solid 5px gray;
+}
+.project-card#nextstep h1, .project-card#nextstep h2, .project-card#nextstep h3, .project-card#nextstep h4, .project-card#nextstep h5 {
+  color: #d65151;
+}
+.project-card#nextstep a span {
+  color: #d65151;
+}
+.project-card#spirographs {
+  color: white;
+  background-color: #100030;
+  border-bottom: solid 5px gray;
+}
+.project-card#spirographs h1, .project-card#spirographs h2, .project-card#spirographs h3, .project-card#spirographs h4, .project-card#spirographs h5 {
+  color: #0069ed;
+}
+.project-card#spirographs a span {
+  color: #a6cfde;
 }
 
 /*# sourceMappingURL=style.css.map */

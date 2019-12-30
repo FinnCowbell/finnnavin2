@@ -21,9 +21,7 @@
 
 .my-name{
   font-family: constants.$header-stack; 
-  font-size: min(8vw,72px);
-  margin-left: 25px;
-  margin-right: 25px;
+  font-size: 72px;
   overflow-x: hidden;
   grid-area: myname;
   justify-self: center;
@@ -55,13 +53,15 @@
     @include name-animation(Fade-dot, .25s, .25s);
     animation-timing-function: linear;
   }
-
 }
-@media screen and (min-width:constants.$mobile-breakpoint){
+
+@media screen and (max-width: constants.$tablet-breakpoint){
   .my-name{
-    margin-left: 50px;
-    margin-right: 50px;
+    font-size: 8vw;
   }
+}
+
+@media screen and (min-width:constants.$mobile-breakpoint){
 }
 /* name Animations*/
 @include color-shift(Opening-color-shift,constants.$header-color,constants.$header-accent);

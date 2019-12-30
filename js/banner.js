@@ -1,12 +1,4 @@
-(function(){
-  var backdrop = document.getElementById('billboard');
-  var remote = document.getElementById('remote');
-  var video = document.getElementById('backdrop-video');
-  remote.onclick = function(e){
-    toggleVideo(video,remote);
-  }
-})();
-
+/*Function Declarations*/
 function toggleVideo(video,remote){
   if(video.paused){
     video.play();
@@ -14,6 +6,15 @@ function toggleVideo(video,remote){
   } else{
     video.pause();
     remote.classList.remove('playing');
+  }
+}
+
+function assignAutoPlayButton(){
+  var backdrop = document.getElementById('billboard');
+  var remote = document.getElementById('remote');
+  var video = document.getElementById('backdrop-video');
+  remote.onclick = function(e){
+    toggleVideo(video,remote);
   }
 }
 
@@ -29,9 +30,14 @@ function autoPauseVideo(){
     toggleVideo(video,remote);
   }
 }
-function getPercentThrough(item){
+function getPercentThrough(item,accountForBottom = true){
+  //returns the distance an item has travelled through a div, taking into account the entire height of the div.
   itemLocation = item.getBoundingClientRect();
-  percentThrough = (window.innerHeight - itemLocation.y)/(window.innerHeight + itemLocation.height)
+  if(accountForBottom){
+    percentThrough = (window.innerHeight - itemLocation.y)/(window.innerHeight + itemLocation.height)
+  } else{
+    percentThrough = (window.innerHeight - itemLocation.y)/(window.innerHeight)
+  }
   if (percentThrough > 1){
     return 1
   } else if(percentThrough < 0){
@@ -41,15 +47,53 @@ function getPercentThrough(item){
   }
 }
 
-function changeTitleLocations(){
+function changeBannerColor(){
+  let about,projects,resume,accents;
+  about = {
+    start: 'into-about',
+    color:'rgb(107, 93, 138)'
+  },
+  projects = {
+    start: 'into-projects',
+    color:'rgb(0,152,116)'
+  },
+  resume = {
+    start: 'resume',
+    color: 'rgb(159, 79, 76)'
+  }
+  accents = [about,projects,resume];
+  banner = document.getElementById('menu-banner').children[0];
+  for(o in accents){
+    start = document.getElementById(accents[o].start);
+    if(start.getBoundingClientRect().top <= window.innerHeight / 4){
+      banner.style.color = accents[o].color;
+    }
+  }
+}
+
+function slideTitles(){
   var billboard, banner, aboutText, projectsText, resumeText;
   billboard = document.getElementById( 'billboard' );
   banner = document.getElementById( 'menu-banner' );
   aboutText = document.getElementById( 'about-text' );
+  projectContent = document.getElementById('projects-content');
+  projectsText = document.getElementById( 'projects-text' );
+  resumeText = document.getElementById( 'resume-text' );
   if(isOnScreen(aboutText)){
     percentThrough = getPercentThrough(aboutText);
     aboutText.style.marginLeft =  (percentThrough * 15) + '%';
     aboutText.style.opacity = percentThrough * .65 + .5;
+  }
+  if(isOnScreen(projectContent)){
+    percentThrough = getPercentThrough(projectContent,false);
+    startPos = window.innerWidth / 3;
+    projectsText.style.paddingLeft = startPos - (percentThrough * startPos) + 'px';
+    projectsText.style.opacity = percentThrough * .65 + .5;
+  }
+  if(isOnScreen(resumeText)){
+    percentThrough = getPercentThrough(resumeText);
+    resumeText.style.marginLeft =  (percentThrough * 15) + '%';
+    resumeText.style.opacity = percentThrough * .65 + .5;
   }
 }
 
@@ -58,8 +102,8 @@ function rotateAboutHexagons(){
   hex1 = document.getElementById( 'hex-svg-1' )
   hex2 = document.getElementById( 'hex-svg-2' )
   hex3 = document.getElementById( 'hex-svg-3' )
-  hexes = [hex1,hex2]
-  maxRotation = [20,-30,-10];
+  hexes = [hex1,hex2,hex3]
+  maxRotation = [100,-100,100];
   for(i in hexes){
     if(isOnScreen(hexes[i])){
       percentThrough = getPercentThrough(hexes[i]);
@@ -68,12 +112,56 @@ function rotateAboutHexagons(){
   }
 };
 
-window.onload = function(){
-  document.addEventListener('scroll', function(e){
-    changeTitleLocations();
+function slideInProjectBackground(){
+  var bg,decal,projectText,curtain;
+  bg = document.getElementById( 'travelling-background' );
+  decal = document.getElementById( 'into-projects' );
+  projectContent = document.getElementById('projects-content');
+  projectText = document.getElementById( 'projects-text')
+  curtain = document.getElementById('project-decal-curtain');
+
+  if(isOnScreen(decal)){
+    var contentRect,percentThrough,initialDistance,position, curtainHeight, decalHeight;
+    contentRect = projectContent.getBoundingClientRect()
+    percentThrough = getPercentThrough(decal);
+    initialDistance = (window.innerHeight / 2);
+    position = (initialDistance - (initialDistance * (percentThrough) * 1.5));
+    decalHeight = decal.getBoundingClientRect().height + 5;
+    decalHeight = decal.getBoundingClientRect().height;
+    curtainHeight = decalHeight;
+    if(position < 0){//Stop it from moving when it hits the decal, which is also the top of the projectText.
+      curtainHeight = decalHeight + position * .33 > 0 ? decalHeight + position * .33 : 0; //position is negative: subtracting.
+      position = 0
+    }
+    curtain.style.height = curtainHeight + 'px';
+    bg.style.top = position + "px";
+  }
+
+}
+
+function elementPositionTick(){
+  if(window.scrolled){
+    console.log('scrolled!')
+    slideTitles();
     rotateAboutHexagons();
+    slideInProjectBackground();
     autoPauseVideo();
+    changeBannerColor();
+    window.scrolled = false;
+  }
+}
+
+window.onload = function(){
+  window.scrolled = false;
+  document.addEventListener('scroll', function(){
+    window.scrolled = true;
   })
-  changeTitleLocations();
+  setInterval(elementPositionTick, 1000/60);
+  assignAutoPlayButton();
+  slideTitles();
   rotateAboutHexagons();
+  slideInProjectBackground();
+  var scroll = new SmoothScroll('a[href*="#"', {
+    speed: 600
+  });
 }

@@ -1,0 +1,50 @@
+@use 'constants';
+
+.header-container{
+  width: 100%;
+}
+
+h2.section-header{
+  margin: 0;
+  font-family: constants.$header-stack;
+  font-size: 15vw;
+  opacity: .5;
+  @include constants.a-no-decoration;
+  .anchor{
+    opacity: .25;
+    font-family: constants.$main-font-stack;
+    margin-left: -.5em;
+    color: constants.$accent-color;
+    font-size: .25em;
+    transition: .1s;
+    &:hover{
+      opacity: 1;
+    }
+    &:visited{
+      color:constants.$accent-color;
+    }
+  }
+}
+@media screen and (min-width: constants.$tablet-breakpoint){
+  h2.section-header{
+    font-size:128px;
+  }
+}
+
+#about-text{
+  color: constants.$about-accent;
+}
+
+#projects{
+  #projects-text{
+    color: constants.$projects-accent;
+    padding-top: constants.$banner-height;
+    float: right;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+#resume-text{
+  color: constants.$resume-accent;
+}

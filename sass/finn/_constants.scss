@@ -1,31 +1,32 @@
-
-/* ***
-Variables:
-*** */
 $accent-color: rgb(28,79,137);
 $header-color: rgb(170, 170, 170);
 $header-accent: rgb(44, 127, 221);
 $topbar-name: rgb(244,244,244);
 
 $about-accent: rgb(95,75,139);
+$projects-accent: rgb(0,152,116);
+$resume-accent: rgb(159, 79, 76);
+
+$showcase-background: rgb(27, 27, 27);
 
 $banner-color: rgb(59, 59, 59);
+$banner-height: 55px;
 
-$header-stack: Ubuntu, sans-serif ;
+$header-stack: 'Cabin', Ubuntu, sans-serif ;
 $main-font-stack: Roboto Slab, serif;
 
 $mobile-breakpoint: 700px;
 $tablet-breakpoint: 1050px;
 
 
-/* ***
-Mixins:
-*** */
 @mixin a-no-decoration{
   a{
     text-decoration:none;
-    color:inherit;
+    color: inherit;
     &:hover{
+      color: inherit;
+    }
+    &:visited{
       color: inherit;
     }
   }
