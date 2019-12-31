@@ -14,16 +14,13 @@
     padding: 20px;
   }
   .about-hex{
-    image{
-      height:100px;
-      width: auto;
-    }
+    display: none;
     .hexagon-path{
       transform-box: fill-box;
       transform-origin: center;
     }
     .hexagon-clip{
-      transform: translate(6.5px,0px);
+      transform: translate(20px,0px);
     }
     display: block;
     margin: auto;
@@ -32,8 +29,17 @@
     transition: .1s;
   }
   @for $i from 1 to 4{
+    #hex#{$i}{
+      grid-area: hex#{$i};
+      clip-path: url(#hexagon-clip-#{$i});
+      -webkit-clip-path: url(#hexagon-clip-#{$i});
+    }
     #hex-svg-#{$i}{
       grid-area: hex#{$i};
+      transform: scaleX(.01);
+      path{
+        transition: .01s; //Fixes safari issues;
+      }
     }
   }
 }
@@ -60,4 +66,7 @@
     margin-left: 100px;
     margin-right: 100px;
   }
+}
+#hextest{
+
 }

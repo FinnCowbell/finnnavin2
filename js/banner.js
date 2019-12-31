@@ -105,9 +105,9 @@ function rotateAboutHexagons(){
   hexes = [hex1,hex2,hex3]
   maxRotation = [100,-100,100];
   for(i in hexes){
-    if(isOnScreen(hexes[i])){
+    if(true){
       percentThrough = getPercentThrough(hexes[i]);
-      hexes[i].children[0].children[0].children[0].style.transform = `rotate(${maxRotation[i]*percentThrough}deg)`
+      hexes[i].children[0].children[0].style.transform = `rotate(${maxRotation[i]*percentThrough}deg)`
     }
   }
 };

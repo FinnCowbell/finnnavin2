@@ -1416,31 +1416,55 @@ h2.section-header .anchor:visited {
   padding: 20px;
 }
 .about-grid .about-hex {
+  display: none;
   display: block;
   margin: auto;
   justify-self: center;
   align-self: center;
   transition: 0.1s;
 }
-.about-grid .about-hex image {
-  height: 100px;
-  width: auto;
-}
 .about-grid .about-hex .hexagon-path {
   transform-box: fill-box;
   transform-origin: center;
 }
 .about-grid .about-hex .hexagon-clip {
-  transform: translate(6.5px, 0px);
+  transform: translate(20px, 0px);
+}
+.about-grid #hex1 {
+  grid-area: hex1;
+  clip-path: url(#hexagon-clip-1);
+  -webkit-clip-path: url(#hexagon-clip-1);
 }
 .about-grid #hex-svg-1 {
   grid-area: hex1;
+  transform: scaleX(0.01);
+}
+.about-grid #hex-svg-1 path {
+  transition: 0.01s;
+}
+.about-grid #hex2 {
+  grid-area: hex2;
+  clip-path: url(#hexagon-clip-2);
+  -webkit-clip-path: url(#hexagon-clip-2);
 }
 .about-grid #hex-svg-2 {
   grid-area: hex2;
+  transform: scaleX(0.01);
+}
+.about-grid #hex-svg-2 path {
+  transition: 0.01s;
+}
+.about-grid #hex3 {
+  grid-area: hex3;
+  clip-path: url(#hexagon-clip-3);
+  -webkit-clip-path: url(#hexagon-clip-3);
 }
 .about-grid #hex-svg-3 {
   grid-area: hex3;
+  transform: scaleX(0.01);
+}
+.about-grid #hex-svg-3 path {
+  transition: 0.01s;
 }
 
 @media screen and (max-width: 1050px) {
@@ -1552,7 +1576,16 @@ h2.section-header .anchor:visited {
   font-family: "Cabin", Ubuntu, sans-serif;
   color: #0069ed;
 }
-.project-card#p4gtl a, .project-card#p4gtl span {
+.project-card#p4gtl h1 a, .project-card#p4gtl h2 a, .project-card#p4gtl h3 a, .project-card#p4gtl h4 a, .project-card#p4gtl h5 a {
+  color: #0069ed;
+}
+.project-card#p4gtl h1 avisited, .project-card#p4gtl h2 avisited, .project-card#p4gtl h3 avisited, .project-card#p4gtl h4 avisited, .project-card#p4gtl h5 avisited {
+  color: #0069ed;
+}
+.project-card#p4gtl span {
+  color: #ff9900;
+}
+.project-card#p4gtl p a {
   color: #ff9900;
 }
 .project-card#nextstep {
@@ -1565,7 +1598,16 @@ h2.section-header .anchor:visited {
   font-family: "Cabin", Ubuntu, sans-serif;
   color: #d65151;
 }
-.project-card#nextstep a, .project-card#nextstep span {
+.project-card#nextstep h1 a, .project-card#nextstep h2 a, .project-card#nextstep h3 a, .project-card#nextstep h4 a, .project-card#nextstep h5 a {
+  color: #d65151;
+}
+.project-card#nextstep h1 avisited, .project-card#nextstep h2 avisited, .project-card#nextstep h3 avisited, .project-card#nextstep h4 avisited, .project-card#nextstep h5 avisited {
+  color: #d65151;
+}
+.project-card#nextstep span {
+  color: #d65151;
+}
+.project-card#nextstep p a {
   color: #d65151;
 }
 .project-card#spirographs {
@@ -1581,7 +1623,16 @@ h2.section-header .anchor:visited {
   font-family: "Cabin", Ubuntu, sans-serif;
   color: lightblue;
 }
-.project-card#spirographs a, .project-card#spirographs span {
+.project-card#spirographs h1 a, .project-card#spirographs h2 a, .project-card#spirographs h3 a, .project-card#spirographs h4 a, .project-card#spirographs h5 a {
+  color: lightblue;
+}
+.project-card#spirographs h1 avisited, .project-card#spirographs h2 avisited, .project-card#spirographs h3 avisited, .project-card#spirographs h4 avisited, .project-card#spirographs h5 avisited {
+  color: lightblue;
+}
+.project-card#spirographs span {
+  color: #a6cfde;
+}
+.project-card#spirographs p a {
   color: #a6cfde;
 }
 .project-card#spirographs * {
