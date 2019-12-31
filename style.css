@@ -1367,7 +1367,7 @@ h2.section-header a:visited {
   color: inherit;
 }
 h2.section-header .anchor {
-  opacity: 0.25;
+  opacity: 0.75;
   font-family: Roboto Slab, serif;
   margin-left: -0.5em;
   color: #1c4f89;
@@ -1517,38 +1517,114 @@ h2.section-header .anchor:visited {
 .project-card {
   border-radius: 25px;
 }
+.project-card .card-content {
+  display: grid;
+  padding: 25px;
+  width: inherit;
+  height: inherit;
+  grid-template-rows: 1fr 2fr auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "title year" "description ." ". .";
+}
+.project-card .title {
+  font-size: 2em;
+  grid-area: title;
+  align-self: center;
+}
+.project-card .description {
+  grid-area: description;
+  align-self: start;
+  max-width: 400px;
+}
+.project-card .year {
+  font-size: 1.5em;
+  grid-area: year;
+  align-self: start;
+  justify-self: end;
+}
 .project-card#p4gtl {
   color: black;
+  font-family: Roboto Slab, serif;
   background-color: #eeeeee;
   border-bottom: solid 5px gray;
 }
 .project-card#p4gtl h1, .project-card#p4gtl h2, .project-card#p4gtl h3, .project-card#p4gtl h4, .project-card#p4gtl h5 {
+  font-family: "Cabin", Ubuntu, sans-serif;
   color: #0069ed;
 }
-.project-card#p4gtl a span {
+.project-card#p4gtl a, .project-card#p4gtl span {
   color: #ff9900;
 }
 .project-card#nextstep {
   color: black;
+  font-family: Roboto Slab, serif;
   background-color: #fffcfc;
   border-bottom: solid 5px gray;
 }
 .project-card#nextstep h1, .project-card#nextstep h2, .project-card#nextstep h3, .project-card#nextstep h4, .project-card#nextstep h5 {
+  font-family: "Cabin", Ubuntu, sans-serif;
   color: #d65151;
 }
-.project-card#nextstep a span {
+.project-card#nextstep a, .project-card#nextstep span {
   color: #d65151;
 }
 .project-card#spirographs {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   color: white;
+  font-family: Roboto Slab, serif;
   background-color: #100030;
   border-bottom: solid 5px gray;
 }
 .project-card#spirographs h1, .project-card#spirographs h2, .project-card#spirographs h3, .project-card#spirographs h4, .project-card#spirographs h5 {
-  color: #0069ed;
+  font-family: "Cabin", Ubuntu, sans-serif;
+  color: lightblue;
 }
-.project-card#spirographs a span {
+.project-card#spirographs a, .project-card#spirographs span {
   color: #a6cfde;
+}
+.project-card#spirographs * {
+  transition: opacity 0.25s;
+}
+.project-card#spirographs #game-window {
+  border-radius: 25px;
+  z-index: 0;
+  grid-area: 1/1/2/2;
+  top: 0;
+  filter: brightness(0.5);
+}
+.project-card#spirographs #game-window iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 25px;
+}
+.project-card#spirographs .card-content {
+  grid-area: 1/1/2/2;
+  display: grid;
+  grid-template-areas: "title year" "description ." "toggle .";
+  z-index: 1;
+}
+.project-card#spirographs .button {
+  align-self: end;
+  z-index: 5;
+  grid-area: toggle;
+  opacity: 1;
+}
+.project-card#spirographs.hidden {
+  pointer-events: none;
+}
+.project-card#spirographs.hidden .text {
+  pointer-events: none;
+  opacity: 0;
+}
+.project-card#spirographs.hidden .button {
+  pointer-events: stroke;
+}
+.project-card#spirographs.hidden #game-window {
+  pointer-events: fill;
+  filter: unset;
 }
 
 /*# sourceMappingURL=style.css.map */

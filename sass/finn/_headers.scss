@@ -11,7 +11,7 @@ h2.section-header{
   opacity: .5;
   @include constants.a-no-decoration;
   .anchor{
-    opacity: .25;
+    opacity: .75;
     font-family: constants.$main-font-stack;
     margin-left: -.5em;
     color: constants.$accent-color;

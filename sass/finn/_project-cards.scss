@@ -1,0 +1,129 @@
+@use "constants";
+@mixin card-creator($header,$links,$text,$bg,$bottom){
+  color: $text;
+  font-family: constants.$main-font-stack;
+  background-color: $bg;
+  border-bottom: solid 5px $bottom;
+  h1,h2,h3,h4,h5{
+    font-family: constants.$header-stack;
+    color: $header;
+    a{
+      color: $header;
+      &visited{
+        color:$header;
+      }
+    }
+  }
+  span{
+    color: $links;
+  }
+  p a{
+    color: $links;
+  }
+}
+
+.project-card{
+  border-radius: 25px;
+  .card-content{
+    display:grid;
+    padding: 25px;
+    width: inherit;
+    height: inherit;
+    grid-template-rows: 1fr 2fr auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    'title year'
+    'description .'
+    '. .'
+  }
+  .title{
+    font-size: 2em;
+    grid-area: title;
+    align-self: center;
+  }
+  .description{
+    grid-area: description;
+    align-self: start;
+    max-width: 400px;
+  }
+  .year{
+    font-size: 1.5em;
+    grid-area: year;
+    align-self:start;
+    justify-self:end;
+  }
+  &#p4gtl{
+    $header: rgb(0, 105, 237);
+    $link: rgb(255,153,0);
+    $text: black;
+    $bg: rgb(238, 238, 238);
+    $bottom: gray;
+    @include card-creator($header,$link,$text,$bg,$bottom);
+  }
+  
+  &#nextstep{
+    $header: rgb(214, 81, 81);
+    $link: rgb(214,81,81);
+    $text: black;
+    $bg: rgb(255,252,252); 
+    $bottom: gray;
+    @include card-creator($header,$link,$text,$bg,$bottom);
+  }
+
+  &#spirographs{
+    $header: lightblue;
+    $link: rgb(166,207,222);
+    $text: white;
+    $bg: rgb(16,0,48); 
+    $bottom: gray;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    @include card-creator($header,$link,$text,$bg,$bottom);
+    *{
+      transition: opacity .25s;
+    }
+    #game-window{
+      border-radius:25px;
+      z-index: 0;
+      grid-area: 1/1/2/2;
+      top:0;
+      filter: brightness(0.5);
+      iframe{
+        width:100%;
+        height:100%;
+        border:none;
+        border-radius:25px;
+      }
+    }
+    .card-content{
+      grid-area: 1/1/2/2;
+      display: grid;
+      grid-template-areas:
+      'title year'
+      'description .'
+      'toggle .';
+      z-index: 1;
+    }
+    .button{
+      align-self: end;
+      z-index: 5;
+      grid-area: toggle;
+      opacity: 1;
+    }
+    &.hidden{
+      pointer-events:none;
+      .text{
+        pointer-events:none;
+        opacity: 0;
+      }
+      .button{
+        pointer-events:stroke;
+      }
+      #game-window{
+        pointer-events: fill;
+        filter: unset;
+      }
+    }
+  }
+}

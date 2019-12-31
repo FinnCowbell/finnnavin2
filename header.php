@@ -22,6 +22,7 @@
 	function include_custom_jquery(){
     wp_enqueue_script( 'smoothScroll', get_template_directory_uri() . '/js/smooth-scroll.polyfills.min.js', array(), null, true);
     wp_enqueue_script( 'banner', get_template_directory_uri() . '/js/banner.js', array('smoothScroll'), null, true);
+    wp_enqueue_script( 'checkItOut', get_template_directory_uri() . '/js/checkItOut.js', array(), null, true);
 	}
 	add_action('wp_enqueue_scripts', 'include_custom_jquery'); 
 	?>
@@ -69,7 +70,7 @@
 	endif;?>
   <header id="menu-banner" class="hidden">
     <h2 class="site-title">
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+      <a href="<?php echo esc_url( home_url( '/#top' ) ); ?>" rel="home">
       Finn Navin
       </a>
     </h2> 

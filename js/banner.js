@@ -130,7 +130,7 @@ function slideInProjectBackground(){
     decalHeight = decal.getBoundingClientRect().height;
     curtainHeight = decalHeight;
     if(position < 0){//Stop it from moving when it hits the decal, which is also the top of the projectText.
-      curtainHeight = decalHeight + position * .33 > 0 ? decalHeight + position * .33 : 0; //position is negative: subtracting.
+      curtainHeight = decalHeight + position * .33 > 0 ? decalHeight + position * .33 : 0; //one liner to decrease height until it is 0.
       position = 0
     }
     curtain.style.height = curtainHeight + 'px';
@@ -141,7 +141,6 @@ function slideInProjectBackground(){
 
 function elementPositionTick(){
   if(window.scrolled){
-    console.log('scrolled!')
     slideTitles();
     rotateAboutHexagons();
     slideInProjectBackground();
@@ -152,15 +151,12 @@ function elementPositionTick(){
 }
 
 window.onload = function(){
-  window.scrolled = false;
   document.addEventListener('scroll', function(){
     window.scrolled = true;
   })
+  window.scrolled = true;
+  elementPositionTick();
   setInterval(elementPositionTick, 1000/60);
-  assignAutoPlayButton();
-  slideTitles();
-  rotateAboutHexagons();
-  slideInProjectBackground();
   var scroll = new SmoothScroll('a[href*="#"', {
     speed: 600
   });
