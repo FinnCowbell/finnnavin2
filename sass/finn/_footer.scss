@@ -1,0 +1,86 @@
+@use 'constants';
+
+.site-footer{
+  padding: 20px;
+  height: 128px;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 100vw;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 0 5px 4px -4px black;
+  .site-info{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-around;
+    transition: .25s;
+    h4{
+      transition: .5s;
+      font-family: constants.$header-stack;
+      font-size: 2.5em;
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+      text-align: center;
+      .hidden{
+        display: flex;
+        font-size:.3em;
+        align-items: center;
+        opacity:0;
+        transition: .25s;
+        height: 0;
+        .git{
+          display:none;
+        }
+        &:hover{
+          .git{
+            display:block;
+          }
+        }
+      }
+      &:hover{
+        color: constants.$header-accent;
+        .hidden{
+          opacity: 1;
+        }
+      }
+    }
+    #socials{
+      $github: #6e5494;
+      $linkedin: #0077B5;
+      $mail: #d44638;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: gray;
+      font-size: 2em;
+      @include constants.a-no-decoration();
+      .github{
+        color:blue;
+        @include constants.hover-to($github);
+      }
+      .linkedin{
+        @include constants.hover-to($linkedin);
+      }
+      .email{
+        @include constants.hover-to($mail);
+      }
+    }
+  }
+  .backtotop{
+    flex: 1;
+    position:absolute;
+    right: 20px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-self: stretch;
+    @include constants.a-no-decoration();
+    a{
+      @include constants.hover-to(constants.$header-accent);
+      font-size: 3em;
+      text-decoration: none;
+    }
+  }
+} 

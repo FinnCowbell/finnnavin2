@@ -18,6 +18,7 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link href="https://fonts.googleapis.com/css?
 	family=Cabin|Ubuntu:300,400,500|Roboto+Mono|Roboto+Slab&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/78fac8051a.js" crossorigin="anonymous"></script>
   <?php 
 	function include_custom_jquery(){
     wp_enqueue_script( 'smoothScroll', get_template_directory_uri() . '/js/smooth-scroll.polyfills.min.js', array(), null, true);

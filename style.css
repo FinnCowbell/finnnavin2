@@ -1439,9 +1439,6 @@ h2.section-header .anchor:visited {
   grid-area: hex1;
   transform: scaleX(0.01);
 }
-.about-grid #hex-svg-1 path {
-  transition: 0.01s;
-}
 .about-grid #hex2 {
   grid-area: hex2;
   clip-path: url(#hexagon-clip-2);
@@ -1451,9 +1448,6 @@ h2.section-header .anchor:visited {
   grid-area: hex2;
   transform: scaleX(0.01);
 }
-.about-grid #hex-svg-2 path {
-  transition: 0.01s;
-}
 .about-grid #hex3 {
   grid-area: hex3;
   clip-path: url(#hexagon-clip-3);
@@ -1462,9 +1456,6 @@ h2.section-header .anchor:visited {
 .about-grid #hex-svg-3 {
   grid-area: hex3;
   transform: scaleX(0.01);
-}
-.about-grid #hex-svg-3 path {
-  transition: 0.01s;
 }
 
 @media screen and (max-width: 1050px) {
@@ -1481,6 +1472,12 @@ h2.section-header .anchor:visited {
     grid-template-areas: ". content hex1" "hex2 content ." ". content hex3";
     margin-left: 100px;
     margin-right: 100px;
+  }
+}
+@media not all and (min-resolution: 0.001dpcm) {
+  path {
+    -webkit-transition: 0.001s;
+    transition: 0.001s;
   }
 }
 /* *** 
@@ -1540,12 +1537,14 @@ h2.section-header .anchor:visited {
 
 .project-card {
   border-radius: 25px;
+  height: 75vh;
+  overflow: scroll;
 }
 .project-card .card-content {
   display: grid;
   padding: 25px;
   width: inherit;
-  height: inherit;
+  height: calc(100% - 50px);
   grid-template-rows: 1fr 2fr auto;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "title year" "description ." ". .";
@@ -1676,6 +1675,119 @@ h2.section-header .anchor:visited {
 .project-card#spirographs.hidden #game-window {
   pointer-events: fill;
   filter: unset;
+}
+
+/* *** 
+* Footer
+*** */
+.site-footer {
+  padding: 20px;
+  height: 128px;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 100vw;
+  background-color: white;
+  box-shadow: inset 0 5px 4px -4px black;
+}
+.site-footer .site-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  transition: 0.25s;
+}
+.site-footer .site-info h4 {
+  transition: 0.5s;
+  font-family: "Cabin", Ubuntu, sans-serif;
+  font-size: 2.5em;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  text-align: center;
+}
+.site-footer .site-info h4 .hidden {
+  display: flex;
+  font-size: 0.3em;
+  align-items: center;
+  opacity: 0;
+  transition: 0.25s;
+  height: 0;
+}
+.site-footer .site-info h4 .hidden .git {
+  display: none;
+}
+.site-footer .site-info h4 .hidden:hover .git {
+  display: block;
+}
+.site-footer .site-info h4:hover {
+  color: #2c7fdd;
+}
+.site-footer .site-info h4:hover .hidden {
+  opacity: 1;
+}
+.site-footer .site-info #socials {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: gray;
+  font-size: 2em;
+}
+.site-footer .site-info #socials a {
+  text-decoration: none;
+  color: inherit;
+}
+.site-footer .site-info #socials a:hover {
+  color: inherit;
+}
+.site-footer .site-info #socials a:visited {
+  color: inherit;
+}
+.site-footer .site-info #socials .github {
+  color: blue;
+  transition: 0.25s;
+}
+.site-footer .site-info #socials .github:hover {
+  color: #6e5494;
+}
+.site-footer .site-info #socials .linkedin {
+  transition: 0.25s;
+}
+.site-footer .site-info #socials .linkedin:hover {
+  color: #0077B5;
+}
+.site-footer .site-info #socials .email {
+  transition: 0.25s;
+}
+.site-footer .site-info #socials .email:hover {
+  color: #d44638;
+}
+.site-footer .backtotop {
+  flex: 1;
+  position: absolute;
+  right: 20px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+}
+.site-footer .backtotop a {
+  text-decoration: none;
+  color: inherit;
+}
+.site-footer .backtotop a:hover {
+  color: inherit;
+}
+.site-footer .backtotop a:visited {
+  color: inherit;
+}
+.site-footer .backtotop a {
+  transition: 0.25s;
+  font-size: 3em;
+  text-decoration: none;
+}
+.site-footer .backtotop a:hover {
+  color: #2c7fdd;
 }
 
 /*# sourceMappingURL=style.css.map */

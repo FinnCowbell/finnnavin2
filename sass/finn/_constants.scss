@@ -12,6 +12,10 @@ $showcase-background: rgb(27, 27, 27);
 $banner-color: rgb(59, 59, 59);
 $banner-height: 55px;
 
+$github: #6e5494;
+$linkedin: #0077B5;
+$mail: #d44638;
+
 $header-stack: 'Cabin', Ubuntu, sans-serif ;
 $main-font-stack: Roboto Slab, serif;
 
@@ -29,5 +33,11 @@ $tablet-breakpoint: 1050px;
     &:visited{
       color: inherit;
     }
+  }
+}
+@mixin hover-to($color){
+  transition: .25s;
+  &:hover{
+    color: $color;
   }
 }

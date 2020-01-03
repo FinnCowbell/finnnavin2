@@ -37,9 +37,6 @@
     #hex-svg-#{$i}{
       grid-area: hex#{$i};
       transform: scaleX(.01);
-      path{
-        transition: .01s; //Fixes safari issues;
-      }
     }
   }
 }
@@ -67,6 +64,9 @@
     margin-right: 100px;
   }
 }
-#hextest{
-
+@media not all and (min-resolution:.001dpcm) {  //Safari 10+
+    path{
+      -webkit-transition: .001s; //Fixes safari issues;
+      transition: .001s;
+    }
 }

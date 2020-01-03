@@ -24,11 +24,13 @@
 
 .project-card{
   border-radius: 25px;
+  height: 75vh;
+  overflow: scroll;
   .card-content{
     display:grid;
     padding: 25px;
     width: inherit;
-    height: inherit;
+    height: calc(100% - 50px);
     grid-template-rows: 1fr 2fr auto;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
