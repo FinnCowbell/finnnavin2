@@ -37,6 +37,10 @@
   position:relative;
   width: 100vw;
   height: 120vh;
+  padding-top: 20px;
+  padding-bottom:20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   #projects-content{
     position: sticky;
     display: flex;

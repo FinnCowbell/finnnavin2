@@ -9,7 +9,7 @@
 <div id="about" class="about-header-container">
   <h2 id="about-text" class="section-header">
     About
-    <a id="about-anchor" class="anchor" href="/#about">#</a>
+    <a id="about-anchor" class="anchor" href="#about">#</a>
 </div>
 <div class="about-grid">
   

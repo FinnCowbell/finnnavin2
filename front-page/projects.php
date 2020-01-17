@@ -2,6 +2,7 @@
   <div id="into-projects" class="transition-triangle">
     <div id="project-decal-curtain">
     </div>
+    <div class="line-0 line"></div>
     <div class="line-1 line"></div>
     <div class="line-2 line"></div>
     <div class="line-3 line"></div>
@@ -32,6 +33,23 @@
             <div class="year text">
               <h3><span>October 2019</span></h3>
             </div>
+            <div class="tech text">
+              <h3>Made with:</h3>
+              <ul>
+                <li>Node.js <i class="fab fa-node-js"></i></li>
+                <ul>
+                  <li>Yarn</li>
+                  <li>Express</li>
+                  <li>Socket.io</li>
+                </ul>
+                <li>Python <i class="fab fa-python"></i></li>
+                <ul>
+                  <li>Karapython <i class="fas fa-microphone-alt"></i></li>
+                </ul>
+                <li>The Spotify API <i class="fab fa-spotify"></i><li>
+                <li>SpeechRecognition <i class="fab fa-chrome"></i></li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -46,6 +64,15 @@
             </div>
             <div class="year text">
               <h3>November 2018</h3>
+            </div>
+            <div class="tech text">
+              <h3>Made with:</h3>
+              <ul>
+                <li><i class="fab fa-node-js"></i>Node.js</li>
+                <li>The Socrata Open Data API (SODA)</li>
+                <li>The Google Maps API</li>
+                <li>Bootstrap</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -68,9 +95,27 @@
             <div class="button">
               <button id="sov-button">Check it out!</button>
             </div>
+            <div class="tech text">
+              <h3>Made with:</h3>
+              <ul>
+                <li><i class="fab fa-node-js"></i>Node.js</li>
+                <li>P5.js</li>
+                <li>The Math Floor API</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div id="outof-projects" class="transition-triangle">
+    <!-- <div id="project-decal-curtain">
+    </div> -->
+    <div class="line-0 line"></div>
+    <div class="line-1 line"></div>
+    <div class="line-2 line"></div>
+    <div class="line-3 line"></div>
+    <div class="line-4 line"></div>
+    <div class="line-5 line"></div>
   </div>
 </div>

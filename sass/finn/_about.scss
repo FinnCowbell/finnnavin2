@@ -1,6 +1,11 @@
 @use 'constants';
 @use '../functions/trig';
 
+#about{
+  padding-top: constants.$banner-height;
+  margin-top: -1 * constants.$banner-height;
+}
+
 .about-grid{
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;

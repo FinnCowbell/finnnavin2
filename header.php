@@ -37,9 +37,10 @@
     if ( is_front_page() || is_home() ) :
     ?>
 	<header id="billboard">
+    <div id="autoplay-bar"></div> 
     <div class="backdrop">
       <video id="backdrop-video" width="auto" height="100%">
-        <source src="../../wp-content/uploads/ss.mp4"></source>
+        <source src="wp-content/themes/finnnavin2/media/ss.webm"></source>
       </video>
     </div>
 		<div class="my-name">

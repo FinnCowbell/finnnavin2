@@ -24,35 +24,42 @@
 
 .project-card{
   border-radius: 25px;
-  height: 75vh;
   overflow: scroll;
   .card-content{
     display:grid;
     padding: 25px;
+    height: 100%;
     width: inherit;
-    height: calc(100% - 50px);
     grid-template-rows: 1fr 2fr auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas:
-    'title year'
-    'description .'
-    '. .'
+    'tech title year'
+    'tech description .'
+    'tech . .'
   }
   .title{
     font-size: 2em;
     grid-area: title;
+    text-align: center;
     align-self: center;
   }
   .description{
     grid-area: description;
     align-self: start;
     max-width: 400px;
+    margin:auto;
   }
   .year{
     font-size: 1.5em;
     grid-area: year;
     align-self:start;
     justify-self:end;
+  }
+  .tech{
+    grid-area: tech;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
   &#p4gtl{
     $header: rgb(0, 105, 237);
@@ -103,8 +110,8 @@
       display: grid;
       grid-template-areas:
       'title year'
-      'description .'
-      'toggle .';
+      '. description .'
+      'toggle . .';
       z-index: 1;
     }
     .button{

@@ -955,6 +955,36 @@ object {
 /* *** 
  * Front Billboard
  *** */
+#autoplay-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  background-color: #2c7fdd;
+  width: 0%;
+  animation-name: grow;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  z-index: 2;
+}
+
+@keyframes grow {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 #billboard {
   text-shadow: black 1px 1px 10px;
   display: grid;
@@ -1013,7 +1043,7 @@ object {
   overflow: hidden;
 }
 #billboard video {
-  filter: blur(10px) brightness(0.5);
+  filter: brightness(0.5);
   overflow: hidden;
   object-fit: cover;
 }
@@ -1263,6 +1293,16 @@ object {
 .transition-triangle {
   padding-bottom: 10px;
 }
+.transition-triangle .line-0 {
+  background-color: #1c4f89;
+  height: 7px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
 .transition-triangle .line-1 {
   background-color: #1c4f89;
   height: 7px;
@@ -1332,8 +1372,7 @@ object {
   margin-top: 0px;
   margin-bottom: 3px;
 }
-
-#project-decal-curtain {
+#into-projects #project-decal-curtain {
   position: absolute;
   transform: rotate(180deg);
   bottom: 0;
@@ -1341,6 +1380,12 @@ object {
   height: 60px;
   background-color: #ebebeb;
   z-index: 1;
+}
+
+#outof-projects .line {
+  background-color: #1b1b1b;
+  margin-top: 0px;
+  margin-bottom: 3px;
 }
 
 /* *** 
@@ -1405,6 +1450,11 @@ h2.section-header .anchor:visited {
 /* *** 
 * About
 *** */
+#about {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
 .about-grid {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -1519,6 +1569,10 @@ h2.section-header .anchor:visited {
   position: relative;
   width: 100vw;
   height: 120vh;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 #projects-window #projects-content {
   position: sticky;
@@ -1537,33 +1591,40 @@ h2.section-header .anchor:visited {
 
 .project-card {
   border-radius: 25px;
-  height: 75vh;
   overflow: scroll;
 }
 .project-card .card-content {
   display: grid;
   padding: 25px;
+  height: 100%;
   width: inherit;
-  height: calc(100% - 50px);
   grid-template-rows: 1fr 2fr auto;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "title year" "description ." ". .";
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: "tech title year" "tech description ." "tech . .";
 }
 .project-card .title {
   font-size: 2em;
   grid-area: title;
+  text-align: center;
   align-self: center;
 }
 .project-card .description {
   grid-area: description;
   align-self: start;
   max-width: 400px;
+  margin: auto;
 }
 .project-card .year {
   font-size: 1.5em;
   grid-area: year;
   align-self: start;
   justify-self: end;
+}
+.project-card .tech {
+  grid-area: tech;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .project-card#p4gtl {
   color: black;
@@ -1653,7 +1714,7 @@ h2.section-header .anchor:visited {
 .project-card#spirographs .card-content {
   grid-area: 1/1/2/2;
   display: grid;
-  grid-template-areas: "title year" "description ." "toggle .";
+  grid-template-areas: "title year" ". description ." "toggle . .";
   z-index: 1;
 }
 .project-card#spirographs .button {

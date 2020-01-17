@@ -1,20 +1,34 @@
 /*Function Declarations*/
-function toggleVideo(video,remote){
+function toggleVideo(){
+  var remote = document.getElementById('remote');
+  var video = document.getElementById('backdrop-video');
   if(video.paused){
     video.play();
-    remote.classList.add('playing');
+    if(!video.paused){
+      remote.classList.add('playing');
+    }
   } else{
     video.pause();
     remote.classList.remove('playing');
   }
 }
 
+function assignAutoPlayBar(){
+  let autoplayBar = document.getElementById('autoplay-bar')
+  let action = ()=>{
+    toggleVideo()
+    autoplayBar.style.width = '100%';
+    autoplayBar.style.animationDuration = '.5s';
+    autoplayBar.style.animationName = 'fadeOut'
+    autoplayBar.removeEventListener('animationend',action)
+  }
+  autoplayBar.addEventListener('animationend', action);
+}
+
 function assignAutoPlayButton(){
-  var backdrop = document.getElementById('billboard');
   var remote = document.getElementById('remote');
-  var video = document.getElementById('backdrop-video');
   remote.onclick = function(e){
-    toggleVideo(video,remote);
+    toggleVideo();
   }
 }
 
@@ -151,13 +165,19 @@ function elementPositionTick(){
 }
 
 window.onload = function(){
+  //Link the play button to the video.
+  assignAutoPlayButton();
+  assignAutoPlayBar();
+  //Set window to scrolled initially to update all values.
+  window.scrolled = true;
+  setInterval(elementPositionTick, 1000/60);
+
   document.addEventListener('scroll', function(){
     window.scrolled = true;
   })
-  window.scrolled = true;
-  elementPositionTick();
-  setInterval(elementPositionTick, 1000/60);
+  //Initialize SmoothScrolling
   var scroll = new SmoothScroll('a[href*="#"', {
-    speed: 600
+    speed: 500
   });
+
 }
